@@ -63,7 +63,3 @@ pnpm dev
 - [ ] Implement sorting by columns
 - [ ] Add unit and integration tests
 - [ ] Add bulk operations (import/export)
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
