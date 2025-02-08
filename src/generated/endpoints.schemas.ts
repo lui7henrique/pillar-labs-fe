@@ -18,10 +18,10 @@ export interface Product {
    */
   price?: number;
   /**
-   * Product stock quantity
+   * Product quantity
    * @minimum 0
    */
-  stock?: number;
+  quantity?: number;
   /** Product category */
   category?: string;
   /** Creation timestamp */
@@ -41,10 +41,10 @@ export interface ProductInput {
    */
   price: number;
   /**
-   * Product stock quantity
+   * Product quantity
    * @minimum 0
    */
-  stock: number;
+  quantity: number;
   /** Product category */
   category: string;
 }

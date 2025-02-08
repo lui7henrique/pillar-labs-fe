@@ -21,7 +21,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${figtree.variable} antialiased`}>
-				<main className="bg-foreground p-8 h-screen">
+				<main className="bg-foreground lg:p-8 h-screen">
 					<div className="h-full">{children}</div>
 				</main>
 

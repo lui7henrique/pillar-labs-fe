@@ -65,7 +65,7 @@ export function ProductsTable() {
 							<Badge>{product.category}</Badge>
 						</TableCell>
 						<TableCell>
-							<Badge variant="outline">{product.stock}</Badge>
+							<Badge variant="outline">{product.quantity}</Badge>
 						</TableCell>
 
 						<TableCell className="text-right">

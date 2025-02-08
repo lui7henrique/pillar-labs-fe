@@ -25,11 +25,6 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import {
-	getGetAllProductsQueryKey,
-	useCreateProduct,
-	useUpdateProduct,
-} from "@/generated/default";
 import type { Product } from "@/generated/endpoints.schemas";
 import { useOptimisticProduct } from "@/hooks/products";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -41,7 +36,7 @@ const productSchema = z.object({
 	name: z.string().min(1, "Name is required"),
 	price: z.number().min(0, "Price must be positive"),
 	category: z.string(),
-	stock: z.number().int().min(0, "Stock must be positive"),
+	quantity: z.number().int().min(0, "Quantity must be positive"),
 	description: z.string().min(1, "Description is required"),
 });
 
@@ -60,7 +55,7 @@ export function ProductDialog({ children, product }: ProductFormProps) {
 			name: product?.name ?? "",
 			price: product?.price ?? 0,
 			category: "Other",
-			stock: product?.stock ?? 0,
+			quantity: product?.quantity ?? 0,
 			description: product?.description ?? "",
 		},
 	});
@@ -168,10 +163,10 @@ export function ProductDialog({ children, product }: ProductFormProps) {
 
 						<FormField
 							control={form.control}
-							name="stock"
+							name="quantity"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Stock</FormLabel>
+									<FormLabel>Quantity</FormLabel>
 									<FormControl>
 										<Input
 											type="number"
