@@ -1,7 +1,3 @@
-Product Management System
-
-A modern web application for managing products built with Next.js and TypeScript.
-
 ## ⚡ Tools Used
 
 - **Framework**: Next.js 14 with App Router
@@ -42,7 +38,7 @@ pnpm install
 3. Set up environment variables:
 
 ```bash
-.env.local
+# .env.local
 
 NEXT_PUBLIC_API_URL=your_api_url_here
 ```
@@ -62,7 +58,4 @@ pnpm dev
 - [ ] Add pagination
 - [ ] Implement sorting by columns
 - [ ] Add unit and integration tests
-- [ ] Implement user authentication
-- [ ] Add product images support
 - [ ] Add bulk operations (import/export)
-- [ ] Add more detailed product analytics
