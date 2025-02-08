@@ -11,9 +11,9 @@
 
 ## ⏱️ Development Time
 
-This project was developed in approximately 4 hours, including:
+This project was developed in approximately 2 hours (front-end), including:
 
-- Initial setup and configuration
+- Initial setup
 - UI component implementation
 - API integration
 - Form validation
