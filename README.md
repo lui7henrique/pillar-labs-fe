@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Product Management System
 
-## Getting Started
+A modern web application for managing products built with Next.js and TypeScript.
 
-First, run the development server:
+## ⚡ Tools Used
+
+- **Framework**: Next.js 14 with App Router
+- **UI Components**: shadcn/ui
+- **Styling**: Tailwind CSS
+- **State Management**: TanStack Query (React Query)
+- **Form Handling**: React Hook Form + Zod
+- **HTTP Client**: Axios
+- **API Client Generation**: Orval
+- **AI Assistance**: Cursor with Claude 3.5 Sonnet
+
+## ⏱️ Development Time
+
+This project was developed in approximately 4 hours, including:
+
+- Initial setup and configuration
+- UI component implementation
+- API integration
+- Form validation
+- Optimistic updates
+- Error handling
+
+## 🚀 Getting Started
+
+1. Clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/lui7henrique/pillar-labs-fe
+cd pillar-labs-fe
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Set up environment variables:
 
-## Learn More
+```bash
+.env.local
 
-To learn more about Next.js, take a look at the following resources:
+NEXT_PUBLIC_API_URL=your_api_url_here
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Run the development server:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+pnpm dev
+```
 
-## Deploy on Vercel
+5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🎯 What's Next
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [ ] Add product deletion
+- [ ] Implement search and filtering
+- [ ] Add pagination
+- [ ] Implement sorting by columns
+- [ ] Add unit and integration tests
+- [ ] Implement user authentication
+- [ ] Add product images support
+- [ ] Add bulk operations (import/export)
+- [ ] Add more detailed product analytics
