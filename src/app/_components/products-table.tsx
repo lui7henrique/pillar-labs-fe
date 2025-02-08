@@ -48,7 +48,16 @@ export function ProductsTable() {
 		}
 
 		if (products.length === 0) {
-			return <div>Nenhum produto encontrado</div>;
+			return (
+				<TableRow>
+					<TableCell
+						colSpan={5}
+						className="text-center text-muted-foreground h-48"
+					>
+						No products found
+					</TableCell>
+				</TableRow>
+			);
 		}
 
 		return (
