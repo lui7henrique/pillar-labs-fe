@@ -1,6 +1,7 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 import {
 	Table,
 	TableBody,
@@ -14,24 +15,43 @@ import { useGetAllProducts } from "@/generated/default";
 import { formatCurrency } from "@/lib/utils";
 
 export function ProductsTable() {
-	const { data: products } = useGetAllProducts();
+	const { data: products, isLoading } = useGetAllProducts();
 
-	if (!products) {
-		return <div>Carregando produtos...</div>;
-	}
+	const renderContent = () => {
+		if (isLoading || !products) {
+			return (
+				<>
+					{Array.from({ length: 20 }, () => {
+						return (
+							<TableRow key={Math.random()}>
+								<TableCell className="font-medium">
+									<Skeleton className="w-[20ch] h-4" />
+								</TableCell>
 
-	return (
-		<Table className="">
-			<TableHeader>
-				<TableRow className="bg-muted">
-					<TableHead>Name</TableHead>
-					<TableHead>Description</TableHead>
-					<TableHead className="text-right">Price</TableHead>
-					<TableHead className="text-right">Stock</TableHead>
-				</TableRow>
-			</TableHeader>
+								<TableCell className="text-muted-foreground">
+									<Skeleton className="w-[50ch] h-[2ex]" />
+								</TableCell>
 
-			<TableBody>
+								<TableCell>
+									<Skeleton className="w-[66px] h-[22px] ml-auto" />
+								</TableCell>
+
+								<TableCell>
+									<Skeleton className="w-[33px] h-[22px] ml-auto" />
+								</TableCell>
+							</TableRow>
+						);
+					})}
+				</>
+			);
+		}
+
+		if (products.length === 0) {
+			return <div>Nenhum produto encontrado</div>;
+		}
+
+		return (
+			<>
 				{products.map((product) => (
 					<TableRow key={product._id}>
 						<TableCell className="font-medium">{product.name}</TableCell>
@@ -49,7 +69,22 @@ export function ProductsTable() {
 						</TableCell>
 					</TableRow>
 				))}
-			</TableBody>
+			</>
+		);
+	};
+
+	return (
+		<Table>
+			<TableHeader>
+				<TableRow className="bg-muted">
+					<TableHead>Name</TableHead>
+					<TableHead>Description</TableHead>
+					<TableHead className="text-right">Price</TableHead>
+					<TableHead className="text-right">Stock</TableHead>
+				</TableRow>
+			</TableHeader>
+
+			<TableBody>{renderContent()}</TableBody>
 		</Table>
 	);
 }
