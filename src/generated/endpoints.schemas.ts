@@ -49,6 +49,19 @@ export interface ProductInput {
   category: string;
 }
 
+export interface ProductCategory {
+  /** Category ID */
+  _id?: string;
+  /** Category name */
+  name?: string;
+  /** Category description */
+  description?: string;
+  /** Creation timestamp */
+  createdAt?: string;
+  /** Last update timestamp */
+  updatedAt?: string;
+}
+
 export type SearchProductsParams = {
 /**
  * Search query text

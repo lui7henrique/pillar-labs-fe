@@ -27,6 +27,7 @@ import type {
 } from '@tanstack/react-query'
 import type {
   Product,
+  ProductCategory,
   ProductInput,
   SearchProductsParams
 } from './endpoints.schemas'
@@ -450,4 +451,145 @@ export const useUpdateProduct = <TError = void,
 
       return useMutation(mutationOptions);
     }
+    /**
+ * Retrieve a list of all product categories
+ * @summary Get all product categories
+ */
+export const getAllCategories = (
     
+ signal?: AbortSignal
+) => {
+      
+      
+      return axiosInstance<ProductCategory[]>(
+      {url: `/api/categories`, method: 'GET', signal
+    },
+      );
+    }
+  
+
+export const getGetAllCategoriesQueryKey = () => {
+    return [`/api/categories`] as const;
+    }
+
+    
+export const getGetAllCategoriesQueryOptions = <TData = Awaited<ReturnType<typeof getAllCategories>>, TError = unknown>( options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllCategories>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetAllCategoriesQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getAllCategories>>> = ({ signal }) => getAllCategories(signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof getAllCategories>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type GetAllCategoriesQueryResult = NonNullable<Awaited<ReturnType<typeof getAllCategories>>>
+export type GetAllCategoriesQueryError = unknown
+
+
+export function useGetAllCategories<TData = Awaited<ReturnType<typeof getAllCategories>>, TError = unknown>(
+  options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllCategories>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getAllCategories>>,
+          TError,
+          Awaited<ReturnType<typeof getAllCategories>>
+        > , 'initialData'
+      >, }
+
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetAllCategories<TData = Awaited<ReturnType<typeof getAllCategories>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllCategories>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof getAllCategories>>,
+          TError,
+          Awaited<ReturnType<typeof getAllCategories>>
+        > , 'initialData'
+      >, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetAllCategories<TData = Awaited<ReturnType<typeof getAllCategories>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllCategories>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Get all product categories
+ */
+
+export function useGetAllCategories<TData = Awaited<ReturnType<typeof getAllCategories>>, TError = unknown>(
+  options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof getAllCategories>>, TError, TData>>, }
+
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGetAllCategoriesQueryOptions(options)
+
+  const query = useQuery(queryOptions) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+export const getGetAllCategoriesSuspenseQueryOptions = <TData = Awaited<ReturnType<typeof getAllCategories>>, TError = unknown>( options?: { query?:Partial<UseSuspenseQueryOptions<Awaited<ReturnType<typeof getAllCategories>>, TError, TData>>, }
+) => {
+
+const {query: queryOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getGetAllCategoriesQueryKey();
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof getAllCategories>>> = ({ signal }) => getAllCategories(signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseSuspenseQueryOptions<Awaited<ReturnType<typeof getAllCategories>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type GetAllCategoriesSuspenseQueryResult = NonNullable<Awaited<ReturnType<typeof getAllCategories>>>
+export type GetAllCategoriesSuspenseQueryError = unknown
+
+
+export function useGetAllCategoriesSuspense<TData = Awaited<ReturnType<typeof getAllCategories>>, TError = unknown>(
+  options: { query:Partial<UseSuspenseQueryOptions<Awaited<ReturnType<typeof getAllCategories>>, TError, TData>>, }
+
+  ):  UseSuspenseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetAllCategoriesSuspense<TData = Awaited<ReturnType<typeof getAllCategories>>, TError = unknown>(
+  options?: { query?:Partial<UseSuspenseQueryOptions<Awaited<ReturnType<typeof getAllCategories>>, TError, TData>>, }
+
+  ):  UseSuspenseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useGetAllCategoriesSuspense<TData = Awaited<ReturnType<typeof getAllCategories>>, TError = unknown>(
+  options?: { query?:Partial<UseSuspenseQueryOptions<Awaited<ReturnType<typeof getAllCategories>>, TError, TData>>, }
+
+  ):  UseSuspenseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+/**
+ * @summary Get all product categories
+ */
+
+export function useGetAllCategoriesSuspense<TData = Awaited<ReturnType<typeof getAllCategories>>, TError = unknown>(
+  options?: { query?:Partial<UseSuspenseQueryOptions<Awaited<ReturnType<typeof getAllCategories>>, TError, TData>>, }
+
+  ):  UseSuspenseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getGetAllCategoriesSuspenseQueryOptions(options)
+
+  const query = useSuspenseQuery(queryOptions) as  UseSuspenseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+

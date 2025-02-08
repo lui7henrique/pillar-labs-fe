@@ -25,8 +25,10 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { useGetAllCategories } from "@/generated/default";
 import type { Product } from "@/generated/endpoints.schemas";
 import { useOptimisticProduct } from "@/hooks/products";
+import { getAllFakerDepartments } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState, type PropsWithChildren } from "react";
 import { useForm } from "react-hook-form";
@@ -48,13 +50,14 @@ type ProductFormProps = PropsWithChildren<{
 export function ProductDialog({ children, product }: ProductFormProps) {
 	const [open, setOpen] = useState(false);
 	const { createProduct, updateProduct } = useOptimisticProduct();
+	const { data: categories } = useGetAllCategories();
 
 	const form = useForm<ProductFormData>({
 		resolver: zodResolver(productSchema),
 		defaultValues: {
 			name: product?.name ?? "",
 			price: product?.price ?? 0,
-			category: "Other",
+			category: product?.category ?? "Other",
 			quantity: product?.quantity ?? 0,
 			description: product?.description ?? "",
 		},
@@ -148,11 +151,20 @@ export function ProductDialog({ children, product }: ProductFormProps) {
 											<SelectTrigger>
 												<SelectValue placeholder="Select a category" />
 											</SelectTrigger>
+
 											<SelectContent>
-												<SelectItem value="Electronics">Electronics</SelectItem>
-												<SelectItem value="Clothing">Clothing</SelectItem>
-												<SelectItem value="Food">Food</SelectItem>
-												<SelectItem value="Other">Other</SelectItem>
+												{categories?.map((category) => {
+													if (!category?.name || !category?._id) return;
+
+													return (
+														<SelectItem
+															key={category._id}
+															value={category.name}
+														>
+															{category.name}
+														</SelectItem>
+													);
+												})}
 											</SelectContent>
 										</Select>
 									</FormControl>
