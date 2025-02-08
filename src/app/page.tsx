@@ -10,7 +10,7 @@ export default function Home() {
 
 	return (
 		<QueryClientProvider client={queryClient}>
-			<div className="flex flex-col justify-center items-center h-full max-w-5xl mx-auto py-16 space-y-4">
+			<div className="flex flex-col justify-center items-center h-full max-w-5xl mx-auto p-6 space-y-4 bg-background border rounded-lg">
 				<header className="flex justify-between items-center w-full">
 					<h1 className="text-2xl font-bold">Products</h1>
 					<Button>Add Product</Button>
