@@ -12,7 +12,7 @@ export default function Home() {
 
 	return (
 		<QueryClientProvider client={queryClient}>
-			<div className="flex flex-col justify-center items-center h-full max-w-5xl mx-auto p-6 space-y-4 bg-background border rounded-lg">
+			<div className="flex flex-col justify-center items-center h-full max-w-5xl mx-auto p-6 space-y-4 bg-background border rounded-md">
 				<header className="flex justify-between items-center w-full">
 					<Image src="/logo.png" alt="Pillar Labs" width={160} height={41} />
 
@@ -21,7 +21,7 @@ export default function Home() {
 					</ProductDialog>
 				</header>
 
-				<div className="overflow-auto rounded-lg border border-border bg-background w-full">
+				<div className="overflow-auto rounded-md border border-border bg-background w-full">
 					<ProductsTable />
 				</div>
 			</div>

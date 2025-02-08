@@ -5,7 +5,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import {
 	Table,
 	TableBody,
-	TableCaption,
 	TableCell,
 	TableHead,
 	TableHeader,
@@ -15,7 +14,6 @@ import { useGetAllProducts } from "@/generated/default";
 import { formatCurrency } from "@/lib/utils";
 import { ProductDialog } from "./product-dialog";
 import { Button } from "@/components/ui/button";
-import { Pencil } from "lucide-react";
 
 export function ProductsTable() {
 	const { data: products, isLoading } = useGetAllProducts();
@@ -73,7 +71,9 @@ export function ProductsTable() {
 
 						<TableCell className="text-right">
 							<ProductDialog product={product}>
-								<Button size="sm">Edit</Button>
+								<Button size="sm" className="">
+									Edit
+								</Button>
 							</ProductDialog>
 						</TableCell>
 					</TableRow>
