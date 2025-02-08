@@ -22,6 +22,8 @@ export interface Product {
    * @minimum 0
    */
   stock?: number;
+  /** Product category */
+  category?: string;
   /** Creation timestamp */
   createdAt?: string;
   /** Last update timestamp */
@@ -43,6 +45,8 @@ export interface ProductInput {
    * @minimum 0
    */
   stock: number;
+  /** Product category */
+  category: string;
 }
 
 export type SearchProductsParams = {

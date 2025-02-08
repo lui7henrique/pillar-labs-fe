@@ -33,16 +33,14 @@ import {
 import type { Product } from "@/generated/endpoints.schemas";
 import { useOptimisticProduct } from "@/hooks/products";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useQueryClient } from "@tanstack/react-query";
 import { useEffect, useState, type PropsWithChildren } from "react";
 import { useForm } from "react-hook-form";
-import { toast } from "sonner";
 import { z } from "zod";
 
 const productSchema = z.object({
 	name: z.string().min(1, "Name is required"),
 	price: z.number().min(0, "Price must be positive"),
-	category: z.enum(["Electronics", "Clothing", "Food", "Other"]),
+	category: z.string(),
 	stock: z.number().int().min(0, "Stock must be positive"),
 	description: z.string().min(1, "Description is required"),
 });

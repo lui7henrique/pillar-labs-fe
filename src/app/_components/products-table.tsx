@@ -28,17 +28,17 @@ export function ProductsTable() {
 								<TableCell className="font-medium">
 									<Skeleton className="w-[20ch] h-4" />
 								</TableCell>
-
-								<TableCell className="text-muted-foreground">
-									<Skeleton className="w-[50ch] h-[2ex]" />
-								</TableCell>
-
 								<TableCell>
-									<Skeleton className="w-[66px] h-[22px] ml-auto" />
+									<Skeleton className="w-[10ch] h-[22px] ml-auto" />
 								</TableCell>
-
 								<TableCell>
-									<Skeleton className="w-[33px] h-[22px] ml-auto" />
+									<Skeleton className="w-[82px] h-[22px] ml-auto" />
+								</TableCell>
+								<TableCell>
+									<Skeleton className="w-[35px] h-[22px]" />
+								</TableCell>
+								<TableCell>
+									<Skeleton className="w-[47px] h-[31px] ml-auto" />
 								</TableCell>
 							</TableRow>
 						);
@@ -56,22 +56,21 @@ export function ProductsTable() {
 				{products.map((product) => (
 					<TableRow key={product._id}>
 						<TableCell className="font-medium">{product.name}</TableCell>
-						<TableCell className="text-muted-foreground">
-							{product.description}
-						</TableCell>
-
-						<TableCell className="text-right">
+						<TableCell>
 							<Badge variant="outline">
 								{formatCurrency(product.price ?? 0)}
 							</Badge>
 						</TableCell>
-						<TableCell className="text-right">
+						<TableCell className="font-medium">
+							<Badge>{product.category}</Badge>
+						</TableCell>
+						<TableCell>
 							<Badge variant="outline">{product.stock}</Badge>
 						</TableCell>
 
 						<TableCell className="text-right">
 							<ProductDialog product={product}>
-								<Button size="sm" className="">
+								<Button size="sm" variant="outline">
 									Edit
 								</Button>
 							</ProductDialog>
@@ -86,10 +85,10 @@ export function ProductsTable() {
 		<Table>
 			<TableHeader>
 				<TableRow className="bg-muted">
-					<TableHead>Name</TableHead>
-					<TableHead>Description</TableHead>
-					<TableHead className="text-right">Price</TableHead>
-					<TableHead className="text-right">Stock</TableHead>
+					<TableHead className="w-[20ch]">Name</TableHead>
+					<TableHead className="w-[10ch]">Price</TableHead>
+					<TableHead className="w-[15ch]">Category</TableHead>
+					<TableHead className="w-[10ch]">Quantity</TableHead>
 					<TableHead />
 				</TableRow>
 			</TableHeader>
