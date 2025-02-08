@@ -1,7 +1,3 @@
-# Product Management System
-
-A modern web application for managing products built with Next.js and TypeScript.
-
 ## ⚡ Tools Used
 
 - **Framework**: Next.js 14 with App Router
