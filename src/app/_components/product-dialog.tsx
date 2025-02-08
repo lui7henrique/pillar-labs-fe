@@ -25,46 +25,84 @@ import {
 	SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import {
+	getGetAllProductsQueryKey,
+	useCreateProduct,
+	useUpdateProduct,
+} from "@/generated/default";
+import type { Product } from "@/generated/endpoints.schemas";
+import { useOptimisticProduct } from "@/hooks/products";
 import { zodResolver } from "@hookform/resolvers/zod";
-import type { PropsWithChildren } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+import { useEffect, useState, type PropsWithChildren } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 
 const productSchema = z.object({
 	name: z.string().min(1, "Name is required"),
 	price: z.number().min(0, "Price must be positive"),
 	category: z.enum(["Electronics", "Clothing", "Food", "Other"]),
-	quantity: z.number().int().min(0, "Quantity must be positive"),
+	stock: z.number().int().min(0, "Stock must be positive"),
 	description: z.string().min(1, "Description is required"),
 });
 
 type ProductFormData = z.infer<typeof productSchema>;
+type ProductFormProps = PropsWithChildren<{
+	product?: Product;
+}>;
 
-export function ProductDialog({ children }: PropsWithChildren) {
+export function ProductDialog({ children, product }: ProductFormProps) {
+	const [open, setOpen] = useState(false);
+	const { createProduct, updateProduct } = useOptimisticProduct();
+
 	const form = useForm<ProductFormData>({
 		resolver: zodResolver(productSchema),
 		defaultValues: {
-			name: "",
-			price: 0,
+			name: product?.name ?? "",
+			price: product?.price ?? 0,
 			category: "Other",
-			quantity: 0,
-			description: "",
+			stock: product?.stock ?? 0,
+			description: product?.description ?? "",
 		},
 	});
 
-	const onSubmit = (data: ProductFormData) => {
-		console.log(data);
+	const handleReset = () => {
+		form.reset();
+		setOpen(false);
 	};
 
+	const onSubmit = async (data: ProductFormData) => {
+		if (product?._id) {
+			await updateProduct({
+				id: product._id,
+				data: data,
+			});
+
+			return handleReset();
+		}
+
+		await createProduct({ data });
+		handleReset();
+	};
+
+	useEffect(() => {
+		if (product) {
+			form.reset(product);
+		}
+	}, [product, form.reset]);
+
 	return (
-		<Dialog>
+		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogTrigger asChild>{children}</DialogTrigger>
 
 			<DialogContent>
 				<DialogHeader>
-					<DialogTitle>Add product</DialogTitle>
+					<DialogTitle>{product ? "Edit product" : "Add product"}</DialogTitle>
 					<DialogDescription>
-						Add a new product to the database.
+						{product
+							? "Edit the product details."
+							: "Add a new product to the database."}
 					</DialogDescription>
 				</DialogHeader>
 
@@ -132,10 +170,10 @@ export function ProductDialog({ children }: PropsWithChildren) {
 
 						<FormField
 							control={form.control}
-							name="quantity"
+							name="stock"
 							render={({ field }) => (
 								<FormItem>
-									<FormLabel>Quantity</FormLabel>
+									<FormLabel>Stock</FormLabel>
 									<FormControl>
 										<Input
 											type="number"
@@ -164,7 +202,9 @@ export function ProductDialog({ children }: PropsWithChildren) {
 						/>
 
 						<DialogFooter>
-							<Button type="submit">Submit</Button>
+							<Button type="submit" disabled={form.formState.isSubmitting}>
+								{form.formState.isSubmitting ? "Submitting..." : "Submit"}
+							</Button>
 						</DialogFooter>
 					</form>
 				</Form>

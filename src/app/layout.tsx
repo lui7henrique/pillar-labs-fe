@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner";
 
 const figtree = Figtree({
 	variable: "--font-figtree",
@@ -23,6 +24,8 @@ export default function RootLayout({
 				<main className="bg-foreground p-8 h-screen">
 					<div className="h-full">{children}</div>
 				</main>
+
+				<Toaster />
 			</body>
 		</html>
 	);

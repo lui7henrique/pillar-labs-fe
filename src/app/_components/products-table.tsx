@@ -13,6 +13,9 @@ import {
 } from "@/components/ui/table";
 import { useGetAllProducts } from "@/generated/default";
 import { formatCurrency } from "@/lib/utils";
+import { ProductDialog } from "./product-dialog";
+import { Button } from "@/components/ui/button";
+import { Pencil } from "lucide-react";
 
 export function ProductsTable() {
 	const { data: products, isLoading } = useGetAllProducts();
@@ -67,6 +70,12 @@ export function ProductsTable() {
 						<TableCell className="text-right">
 							<Badge variant="outline">{product.stock}</Badge>
 						</TableCell>
+
+						<TableCell className="text-right">
+							<ProductDialog product={product}>
+								<Button size="sm">Edit</Button>
+							</ProductDialog>
+						</TableCell>
 					</TableRow>
 				))}
 			</>
@@ -81,6 +90,7 @@ export function ProductsTable() {
 					<TableHead>Description</TableHead>
 					<TableHead className="text-right">Price</TableHead>
 					<TableHead className="text-right">Stock</TableHead>
+					<TableHead />
 				</TableRow>
 			</TableHeader>
 
