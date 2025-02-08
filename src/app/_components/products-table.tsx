@@ -64,7 +64,9 @@ export function ProductsTable() {
 			<>
 				{products.map((product) => (
 					<TableRow key={product._id}>
-						<TableCell className="font-medium">{product.name}</TableCell>
+						<TableCell className="font-medium whitespace-nowrap">
+							{product.name}
+						</TableCell>
 						<TableCell>
 							<Badge variant="outline">
 								{formatCurrency(product.price ?? 0)}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { Pattern } from "@/components/ui/pattern";
 
 const figtree = Figtree({
 	variable: "--font-figtree",
@@ -20,10 +21,12 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`${figtree.variable} antialiased`}>
-				<main className="bg-foreground lg:p-8 h-screen">
+			<body className={`${figtree.variable} antialiased bg-foreground`}>
+				<main className="lg:p-8 h-screen relative">
 					<div className="h-full">{children}</div>
 				</main>
+
+				<Pattern variant="checkered" />
 
 				<Toaster />
 			</body>
