@@ -1,3 +1,7 @@
+# Product Management System
+
+A modern web application for managing products built with Next.js and TypeScript.
+
 ## ⚡ Tools Used
 
 - **Framework**: Next.js 14 with App Router
@@ -22,6 +26,10 @@ This project was developed in approximately 2 hours (front-end), including:
 
 ## 🚀 Getting Started
 
+> ⚠️ **Important**: This application requires the backend server to be running first. Make sure to set up and run the backend following the instructions at [pillar-labs-be](https://github.com/lui7henrique/pillar-labs-be) before proceeding.
+
+### Setup
+
 1. Clone the repository:
 
 ```bash
@@ -40,7 +48,7 @@ pnpm install
 ```bash
 # .env.local
 
-NEXT_PUBLIC_API_URL=your_api_url_here
+NEXT_PUBLIC_API_URL=http://localhost:3333
 ```
 
 4. Run the development server:
@@ -59,3 +67,7 @@ pnpm dev
 - [ ] Implement sorting by columns
 - [ ] Add unit and integration tests
 - [ ] Add bulk operations (import/export)
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
